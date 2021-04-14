@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+</head>
+<body>
+	<lable class="Led_Light1" >RED_LIGHT</lable> 
+	<div id="app1">
+	  <h1> {{LED_RED}} </h1>
+	  <button @click="LED_CONTROL_RED('on')" class="bg-grey-dark text-white rounded-full p-4">On</button>
+	  <button @click="LED_CONTROL_RED('off')" class="bg-grey-dark text-white rounded-full p-4">Off</button>
+	</div>
+
+	<lable class="Led_Light2">GREEN_LIGHT</lable> 
+	<div id="app2">
+	  <h1> {{LED_GREEN}} </h1>
+	  <button @click="LED_CONTROL_GREEN('on')" class="bg-grey-dark text-white rounded-full p-4">On</button>
+	  <button @click="LED_CONTROL_GREEN('off')" class="bg-grey-dark text-white rounded-full p-4">Off</button>
+	</div>
+
+
+	<lable class="Led_Light3" >BLUE_LIGHT</lable> 
+	<div id="app3">
+	  <h1> {{LED_BLUE}} </h1>
+	  <button @click="LED_CONTROL_BLUE('on')" class="bg-grey-dark text-white rounded-full p-4">On<br></button>
+	  <button @click="LED_CONTROL_BLUE('off')" class="bg-grey-dark text-white rounded-full p-4">Off</button>
+	</div>
+	 
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	
+	<script>
+		var app = new Vue({
+  			el: '#app1',
+  			data: {
+    			LED_RED: ''
+  			}, 
+  			methods: {
+  				LED_CONTROL_RED(command)
+  				{
+  					this.LED_RED = command;
+  				}
+  			}, 
+  			watch: {
+  				LED_RED: function()
+  				{
+  					axios.post('https://api.particle.io/v1/devices/e00fce687be043c33d313790/LED_CONTROL_RED?access_token=3850ac907263d93ee3beba881e17ebe0de8e2159', {
+					    arg: this.LED_RED,
+					  })
+					  .then(function (response) {
+					    console.log(response);
+					  })
+					  .catch(function (error) {
+					    console.log(error);
+					  });
+					  				}
+  				}
+  		})
+	</script>	
+
+	<script>
+		var app = new Vue({
+  			el: '#app2',
+  			data: {
+    			LED_GREEN: ''
+  			}, 
+  			methods: {
+  				LED_CONTROL_GREEN(command)
+  				{
+  					this.LED_GREEN = command;
+  				}
+  			}, 
+  			watch: {
+  				LED_GREEN: function()
+  				{
+  					axios.post('https://api.particle.io/v1/devices/e00fce687be043c33d313790/LED_CONTROL_GREEN?access_token=3850ac907263d93ee3beba881e17ebe0de8e2159', {
+					    arg: this.LED_GREEN,
+					  })
+					  .then(function (response) {
+					    console.log(response);
+					  })
+					  .catch(function (error) {
+					    console.log(error);
+					  });
+					  				}
+  				}
+  		})
+	</script>	
+
+	<script>
+		var app = new Vue({
+  			el: '#app3',
+  			data: {
+    			LED_BLUE: ''
+  			}, 
+  			methods: {
+  				LED_CONTROL_BLUE(command)
+  				{
+  					this.LED_BLUE = command;
+  				}
+  			}, 
+  			watch: {
+  				LED_BLUE: function()
+  				{
+  					axios.post('https://api.particle.io/v1/devices/e00fce687be043c33d313790/LED_CONTROL_BLUE?access_token=3850ac907263d93ee3beba881e17ebe0de8e2159', {
+					    arg: this.LED_BLUE,
+					  })
+					  .then(function (response) {
+					    console.log(response);
+					  })
+					  .catch(function (error) {
+					    console.log(error);
+					  });
+					  				}
+  				}
+  		})
+	</script>	
+</body>
+</html>
